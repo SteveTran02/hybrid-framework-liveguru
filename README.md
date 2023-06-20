@@ -1,2 +1,2 @@
-# hybrid-framework-nopcommerce
-UI Automation Testing Framework for NopCommerce project
+# hybrid-framework-liveguru
+UI Automation Testing Framework for Live Guru project
