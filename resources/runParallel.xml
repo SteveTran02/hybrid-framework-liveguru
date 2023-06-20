@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Parameter" parallel="tests" thread-count = "2">
+
+	<parameter name="environment" value="dev" />
+	
+  	<test name="Run on Firefox Browser">
+  			<parameter name="browser" value="firefox" />
+    		<classes>
+     				 <class name="parameter.Multiple_Browser_And_Environment"/>
+    		</classes>
+  	</test> 
+  	
+  	<test name="Run on Chrome Browser">
+  			<parameter name="browser" value="chrome" />
+    		<classes>
+     				 <class name="parameter.Multiple_Browser_And_Environment"/>
+    		</classes>
+  	</test> 
+  	
+</suite>

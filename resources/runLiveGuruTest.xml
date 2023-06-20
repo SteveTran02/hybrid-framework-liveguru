@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="LiveGuru">
+
+	<test name="Run on Firefox">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="com.liveguru.user.Topic_01_Switch_Rule_And_Data_Table" />
+		</classes>
+	</test>
+	
+</suite> 

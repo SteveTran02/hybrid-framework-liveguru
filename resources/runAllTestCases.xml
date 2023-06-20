@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite parallel="false" name="Tiki - API Level" >
+
+  	<suite-files>
+     		<suite-file path="runWebApp.xml"/>
+     		<suite-file path="runMobileApp.xml"/>
+     		<suite-file path="runAPILevel.xml"/>
+  	</suite-files> 
+  	
+</suite>

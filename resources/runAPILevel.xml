@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite parallel="false" name="Tiki - API Level" >
+
+  	<test name="Run on Firefox Browser">
+    		<classes>
+     				 <class name="apiLevel.Customer"/>
+    		</classes>
+  	</test> 
+  	
+</suite>
