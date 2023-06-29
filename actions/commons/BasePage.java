@@ -16,6 +16,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObjects.liveguru.user.UserAboutUsObject;
+import pageObjects.liveguru.user.UserContactUsObject;
+import pageObjects.liveguru.user.UserCustomerServiceObject;
+import pageObjects.liveguru.user.UserPrivacyPolicyObject;
+import pageUIs.liveGuru.user.UserBasePageUI;
+
 public class BasePage {
 
 	public static BasePage getBasePageObject() {
@@ -391,6 +397,24 @@ public class BasePage {
 		}
 	}
 
+	// Wait for page loading success script jquery and readystate
+	public boolean isPageLoadedSuccess(WebDriver driver) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeOut);
+		final JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return (Boolean) jsExecutor.executeScript("return (window.jQuery != null) && (jQuery.active === 0);");
+			}
+		};
+
+		ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return jsExecutor.executeScript("return document.readyState").toString().equals("complete");
+			}
+		};
+		return explicitWait.until(jQueryLoad) && explicitWait.until(jsLoad);
+	}
+
 	public void waitForElementVisible(WebDriver driver, String locatorType) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeOut);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locatorType)));
@@ -446,6 +470,29 @@ public class BasePage {
 		explicitWait.until(ExpectedConditions.presenceOfElementLocated(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
 	}
 
-	// Switch role
+	// Switch page
+	public UserAboutUsObject openUserAboutUsPage(WebDriver driver) {
+		waitForElementClickable(driver, UserBasePageUI.ABOUT_US_LINK);
+		clickToElement(driver, UserBasePageUI.ABOUT_US_LINK);
+		return PageGeneratorManager.getUserAboutUsPage(driver);
+	}
+
+	public UserContactUsObject openUserContactUsPage(WebDriver driver) {
+		waitForElementClickable(driver, UserBasePageUI.CONTACT_US_LINK);
+		clickToElement(driver, UserBasePageUI.CONTACT_US_LINK);
+		return PageGeneratorManager.getUserContactUsPage(driver);
+	}
+
+	public UserCustomerServiceObject openUserCustomerServicePage(WebDriver driver) {
+		waitForElementClickable(driver, UserBasePageUI.CUSTOMER_SERVICE_LINK);
+		clickToElement(driver, UserBasePageUI.CUSTOMER_SERVICE_LINK);
+		return PageGeneratorManager.getUserCustomerServicePage(driver);
+	}
+
+	public UserPrivacyPolicyObject openUserPrivacyPolicyPage(WebDriver driver) {
+		waitForElementClickable(driver, UserBasePageUI.PRIVACY_POLICY_LINK);
+		clickToElement(driver, UserBasePageUI.PRIVACY_POLICY_LINK);
+		return PageGeneratorManager.getUserPrivacyPolicyPage(driver);
+	}
 
 }

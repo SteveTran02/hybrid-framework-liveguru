@@ -18,14 +18,11 @@ public class BaseTest {
 	protected WebDriver getBrowserDriver(String browserName) {
 		BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
 		if (browser == BrowserList.FIREFOX) {
-			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
+			driver = WebDriverManager.firefoxdriver().create();
 		} else if (browser == BrowserList.CHROME) {
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			driver = WebDriverManager.chromedriver().create();
 		} else if (browser == BrowserList.EDGE) {
-			WebDriverManager.edgedriver().setup();
-			driver = new EdgeDriver();
+			driver = WebDriverManager.edgedriver().create();
 		} else {
 			throw new BrowserNotSupport(browserName);
 		}
@@ -75,6 +72,14 @@ public class BaseTest {
 	protected int getRandomNumber() {
 		Random random = new Random();
 		return random.nextInt(9999);
+	}
+
+	protected void closeBrowser() {
+		if (driver == null) {
+			System.out.println("Browser is closed");
+		} else {
+			driver.quit();
+		}
 	}
 
 }
