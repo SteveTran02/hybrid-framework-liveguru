@@ -15,7 +15,7 @@ import pageObjects.liveguru.user.UserCustomerServiceObject;
 import pageObjects.liveguru.user.UserHomePageObject;
 import pageObjects.liveguru.user.UserPrivacyPolicyObject;
 
-public class Topic_02_Switch_Page extends BaseTest {
+public class Topic_01_Switch_Page extends BaseTest {
 	private WebDriver driver;
 	private UserHomePageObject userHomePage;
 	private UserAboutUsObject userAboutUsPage;

@@ -61,4 +61,14 @@ public class AdminDashBoardObject extends BasePage {
 		clickToElement(driver, AdminDashBoardPageUI.SEARCH_BUTTON);
 	}
 
+	public void clickToCloseAtPopup() {
+		waitForElementClickable(driver, AdminDashBoardPageUI.CLOSE_BUTTON_AT_POPUP);
+		clickToElement(driver, AdminDashBoardPageUI.CLOSE_BUTTON_AT_POPUP);
+	}
+
+	public boolean isDashboardHeaderDisplayed() {
+		waitForElementVisible(driver, AdminDashBoardPageUI.DASHBOARD_HEADER);
+		return isElementDisplayed(driver, AdminDashBoardPageUI.DASHBOARD_HEADER);
+	}
+
 }

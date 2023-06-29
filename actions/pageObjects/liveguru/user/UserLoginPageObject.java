@@ -40,4 +40,10 @@ public class UserLoginPageObject extends BasePage {
 		waitForElementVisible(driver, UserLoginPageUI.ERROR_MESSAGE);
 		return getElementText(driver, UserLoginPageUI.ERROR_MESSAGE);
 	}
+
+	public UserMyDashBoardObject loginAsUser(String userEmailAddress, String userPassword) {
+		inputToEmailAddressTextbox(userEmailAddress);
+		inputToPasswordTextbox(userPassword);
+		return clickToLoginButton();
+	}
 }

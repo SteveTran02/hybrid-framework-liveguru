@@ -28,4 +28,10 @@ public class AdminLoginPageObject extends BasePage {
 		clickToElement(driver, AdminLoginPageUI.LOGIN_BUTTON);
 		return PageGeneratorManager.getAdminDashBoardPage(driver);
 	}
+
+	public AdminDashBoardObject loginAsAdmin(String adminUserName, String adminPassword) {
+		inputToUserNameTextbox(adminUserName);
+		inputToPasswordTextbox(adminPassword);
+		return clickToLoginButton();
+	}
 }

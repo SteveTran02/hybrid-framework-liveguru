@@ -17,10 +17,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObjects.liveguru.admin.AdminLoginPageObject;
 import pageObjects.liveguru.user.UserAboutUsObject;
 import pageObjects.liveguru.user.UserContactUsObject;
 import pageObjects.liveguru.user.UserCustomerServiceObject;
+import pageObjects.liveguru.user.UserHomePageObject;
 import pageObjects.liveguru.user.UserPrivacyPolicyObject;
+import pageUIs.liveGuru.admin.AdminBasePageUI;
 import pageUIs.liveGuru.user.UserBasePageUI;
 
 public class BasePage {
@@ -515,4 +518,18 @@ public class BasePage {
 		return PageGeneratorManager.getUserPrivacyPolicyPage(driver);
 	}
 
+	public UserHomePageObject clickToLogoutLinkAtUserPage(WebDriver driver) {
+		waitForElementClickable(driver, UserBasePageUI.ACOUNT_CART_WRAPPER);
+		clickToElement(driver, UserBasePageUI.ACOUNT_CART_WRAPPER);
+		waitForElementClickable(driver, UserBasePageUI.LOGOUT_LINK);
+		clickToElement(driver, UserBasePageUI.LOGOUT_LINK);
+		sleepInSecond(5);
+		return PageGeneratorManager.getUserHomePage(driver);
+	}
+
+	public AdminLoginPageObject clickToLogoutLinkAtAdminPage(WebDriver driver) {
+		waitForElementClickable(driver, AdminBasePageUI.LOGOUT_LINK);
+		clickToElement(driver, AdminBasePageUI.LOGOUT_LINK);
+		return PageGeneratorManager.getAdminLoginPage(driver);
+	}
 }

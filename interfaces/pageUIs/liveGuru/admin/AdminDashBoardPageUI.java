@@ -10,4 +10,6 @@ public class AdminDashBoardPageUI {
 	public static final String LOG_OUT_BUTTON = "xpath=//a[text()='Log Out']";
 	public static final String EMAIL_TEXTBOX = "xpath=//input[@id='customerGrid_filter_email']";
 	public static final String SEARCH_BUTTON = "xpath=//td[@class='filter-actions a-right']//button//span[text()='Search']";
+	public static final String DASHBOARD_HEADER = "xpath=//div[@id='anchor-content']//h3[text()='Manage Customers']";
+
 }

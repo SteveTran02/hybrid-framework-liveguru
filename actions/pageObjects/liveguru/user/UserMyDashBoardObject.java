@@ -29,4 +29,9 @@ public class UserMyDashBoardObject extends BasePage {
 		clickToElement(driver, UserDashBoardPageUI.MY_ACCOUNT_MENU_LINK);
 	}
 
+	public boolean isDashboardHeaderDisplayed() {
+		waitForElementVisible(driver, UserDashBoardPageUI.MY_DASHBOARD_HEADER);
+		return isElementDisplayed(driver, UserDashBoardPageUI.MY_DASHBOARD_HEADER);
+	}
+
 }
