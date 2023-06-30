@@ -518,6 +518,35 @@ public class BasePage {
 		return PageGeneratorManager.getUserPrivacyPolicyPage(driver);
 	}
 
+	// Dynamic locator for switch pages
+	public BasePage openPagesAtFooterByName(WebDriver driver, String pageName) {
+		waitForElementClickable(driver, UserBasePageUI.DYNAMIC_PAGE_AT_FOOTER, pageName);
+		clickToElement(driver, UserBasePageUI.DYNAMIC_PAGE_AT_FOOTER, pageName);
+		switch (pageName) {
+		case "About Us":
+			return PageGeneratorManager.getUserAboutUsPage(driver);
+		case "Contact Us":
+			return PageGeneratorManager.getUserContactUsPage(driver);
+		case "Customer Service":
+			return PageGeneratorManager.getUserCustomerServicePage(driver);
+		case "Privacy Policy":
+			return PageGeneratorManager.getUserPrivacyPolicyPage(driver);
+		default:
+			throw new RuntimeException("Page name is invalid");
+		}
+	}
+
+	public void openPagesAtFooterByPageName(WebDriver driver, String pageName) {
+		waitForElementClickable(driver, UserBasePageUI.DYNAMIC_PAGE_AT_FOOTER, pageName);
+		clickToElement(driver, UserBasePageUI.DYNAMIC_PAGE_AT_FOOTER, pageName);
+	}
+
+	public boolean isPageDisplayedByPageHeaderName(WebDriver driver, String pageHeaderName) {
+		waitForElementVisible(driver, UserBasePageUI.DYNAMIC_PAGE_HEADER, pageHeaderName);
+		return isElementDisplayed(driver, UserBasePageUI.DYNAMIC_PAGE_HEADER, pageHeaderName);
+	}
+
+	// Method using switch role
 	public UserHomePageObject clickToLogoutLinkAtUserPage(WebDriver driver) {
 		waitForElementClickable(driver, UserBasePageUI.ACOUNT_CART_WRAPPER);
 		clickToElement(driver, UserBasePageUI.ACOUNT_CART_WRAPPER);

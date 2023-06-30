@@ -15,7 +15,7 @@ import pageObjects.liveguru.user.UserCustomerServiceObject;
 import pageObjects.liveguru.user.UserHomePageObject;
 import pageObjects.liveguru.user.UserPrivacyPolicyObject;
 
-public class Topic_01_Switch_Page extends BaseTest {
+public class Topic_03_Dynamic_Locator extends BaseTest {
 	private WebDriver driver;
 	private UserHomePageObject userHomePage;
 	private UserAboutUsObject userAboutUsPage;
@@ -33,16 +33,31 @@ public class Topic_01_Switch_Page extends BaseTest {
 
 	@Test
 	public void TC_01_Navigate_Page_In_Footer() {
-		userAboutUsPage = userHomePage.openUserAboutUsPage(driver);
+		userAboutUsPage = (UserAboutUsObject) userHomePage.openPagesAtFooterByName(driver, "About Us");
 		Assert.assertTrue(userAboutUsPage.isPageDisplayedByPageHeaderName(driver, "About Magento Store"));
 
-		userContactUsPage = userAboutUsPage.openUserContactUsPage(driver);
+		userContactUsPage = (UserContactUsObject) userAboutUsPage.openPagesAtFooterByName(driver, "Contact Us");
 		Assert.assertTrue(userContactUsPage.isPageDisplayedByPageHeaderName(driver, "Contact Us"));
 
-		userCustomerServicePage = userContactUsPage.openUserCustomerServicePage(driver);
+		userCustomerServicePage = (UserCustomerServiceObject) userContactUsPage.openPagesAtFooterByName(driver, "Customer Service");
 		Assert.assertTrue(userCustomerServicePage.isPageDisplayedByPageHeaderName(driver, "Customer Service"));
 
-		userPrivacyPolicyPage = userCustomerServicePage.openUserPrivacyPolicyPage(driver);
+		userPrivacyPolicyPage = (UserPrivacyPolicyObject) userCustomerServicePage.openPagesAtFooterByName(driver, "Privacy Policy");
+		Assert.assertTrue(userPrivacyPolicyPage.isPageDisplayedByPageHeaderName(driver, "Privacy Policy"));
+	}
+
+	@Test
+	public void TC_02_Navigate_Page_In_Footer() {
+		userPrivacyPolicyPage.openPagesAtFooterByPageName(driver, "Contact Us");
+		Assert.assertTrue(userContactUsPage.isPageDisplayedByPageHeaderName(driver, "Contact Us"));
+
+		userContactUsPage.openPagesAtFooterByPageName(driver, "Customer Service");
+		Assert.assertTrue(userCustomerServicePage.isPageDisplayedByPageHeaderName(driver, "Customer Service"));
+
+		userCustomerServicePage.openPagesAtFooterByPageName(driver, "About Us");
+		Assert.assertTrue(userAboutUsPage.isPageDisplayedByPageHeaderName(driver, "About Magento Store"));
+
+		userCustomerServicePage.openPagesAtFooterByPageName(driver, "Privacy Policy");
 		Assert.assertTrue(userPrivacyPolicyPage.isPageDisplayedByPageHeaderName(driver, "Privacy Policy"));
 	}
 
