@@ -248,7 +248,7 @@ public class BasePage {
 		return getListWebElement(driver, locatorType).size();
 	}
 
-	public int getElementSize(WebDriver driver, String locatorType, String... dynamicValues) {
+	public int getListElementSize(WebDriver driver, String locatorType, String... dynamicValues) {
 		return getListWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).size();
 	}
 
@@ -296,6 +296,10 @@ public class BasePage {
 		return getWebElement(driver, locatorType).isSelected();
 	}
 
+	public boolean isElementSelected(WebDriver driver, String locatorType, String... dynamicValues) {
+		return getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).isSelected();
+	}
+
 	public void switchToFrameIframe(WebDriver driver, String locatorType) {
 		driver.switchTo().frame(getWebElement(driver, locatorType));
 	}
@@ -304,19 +308,32 @@ public class BasePage {
 		driver.switchTo().defaultContent();
 	}
 
+	/* Actions - Interaction */
 	public void hoverMouseToElement(WebDriver driver, String locatorType) {
 		Actions action = new Actions(driver);
 		action.moveToElement(getWebElement(driver, locatorType)).perform();
 	}
 
-	public void pressKeyToElement(WebDriver driver, String locatorType, Keys key) {
-		Actions action = new Actions(driver);
-		action.sendKeys(getWebElement(driver, locatorType), key);
+	public void doubleClickToElement(WebDriver driver, String locatorType) {
+		new Actions(driver).doubleClick(getWebElement(driver, locatorType)).perform();
 	}
 
-	public void pressKeyToElement(WebDriver driver, String locatorType, Keys key, String... dynamicValues) {
+	public void rightClickToElement(WebDriver driver, String locatorType) {
+		new Actions(driver).contextClick(getWebElement(driver, locatorType)).perform();
+	}
+
+	public void dragAndDropElement(WebDriver driver, String sourceLocator, String targetLocator) {
+		new Actions(driver).dragAndDrop(getWebElement(driver, sourceLocator), getWebElement(driver, targetLocator)).perform();
+	}
+
+	public void sendKeyBoardToElement(WebDriver driver, String locatorType, Keys key) {
 		Actions action = new Actions(driver);
-		action.sendKeys(getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)), key);
+		action.sendKeys(getWebElement(driver, locatorType), key).perform();
+	}
+
+	public void sendKeyBoardToElement(WebDriver driver, String locatorType, Keys key, String... dynamicValues) {
+		Actions action = new Actions(driver);
+		action.sendKeys(getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)), key).perform();
 	}
 
 	public void scrollToBottomPage(WebDriver driver) {
