@@ -11,7 +11,7 @@ public class GlobalConstants {
 	public static final String OS_NAME = System.getProperty("os.name");
 
 	// Download/ Upload file
-	public static final String UPLOAD_FILE = PROJECT_PATH + File.separator + "uploadFiles";
+	public static final String UPLOAD_FILE = PROJECT_PATH + File.separator + "uploadFiles" + File.separator;
 	public static final String DOWNLOAD_FILE = PROJECT_PATH + File.separator + "downloadFiles";
 
 	// Browser Logs/Extension

@@ -23,6 +23,7 @@ import pageObjects.liveguru.user.UserContactUsObject;
 import pageObjects.liveguru.user.UserCustomerServiceObject;
 import pageObjects.liveguru.user.UserHomePageObject;
 import pageObjects.liveguru.user.UserPrivacyPolicyObject;
+import pageUIs.jQuery.uploadFiles.BasePageJQueryUI;
 import pageUIs.liveGuru.admin.AdminBasePageUI;
 import pageUIs.liveGuru.user.UserBasePageUI;
 
@@ -409,6 +410,16 @@ public class BasePage {
 		return (String) jsExecutor.executeScript("return arguments[0].validationMessage;", getWebElement(driver, locatorType));
 	}
 
+	public boolean isImageLoaded(WebDriver driver, String locatorType, String... dynamicValues) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		boolean status = (boolean) jsExecutor.executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)));
+		if (status) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public boolean isImageLoaded(WebDriver driver, String locatorType) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		boolean status = (boolean) jsExecutor.executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", getWebElement(driver, locatorType));
@@ -508,6 +519,16 @@ public class BasePage {
 	public void waitForElementPresence(WebDriver driver, String locatorType, String... dynamicValues) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeOut);
 		explicitWait.until(ExpectedConditions.presenceOfElementLocated(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
+	}
+
+	public void uploadMultipleFiles(WebDriver driver, String... fileNames) {
+		String filePath = GlobalConstants.UPLOAD_FILE;
+		String fullFileName = "";
+		for (String fileName : fileNames) {
+			fullFileName = fullFileName + filePath + fileName + "\n";
+		}
+		fullFileName = fullFileName.trim();
+		getWebElement(driver, BasePageJQueryUI.UPLOAD_FILES).sendKeys(fullFileName);
 	}
 
 	// Switch page

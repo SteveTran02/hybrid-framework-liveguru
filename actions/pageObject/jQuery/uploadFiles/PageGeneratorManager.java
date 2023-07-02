@@ -1,4 +1,4 @@
-package pageObject.DataTable;
+package pageObject.jQuery.uploadFiles;
 
 import org.openqa.selenium.WebDriver;
 

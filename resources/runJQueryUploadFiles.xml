@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="LiveGuru">
+
+	<parameter name="url" value="https://blueimp.github.io/jQuery-File-Upload/" />
+	
+	<test name="Run on FIREFOX">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="com.jquery.Topic_05_Upload_Verify_Multiple_Files" />
+		</classes>
+	</test>
+
+</suite> 
